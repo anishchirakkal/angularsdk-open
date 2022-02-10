@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Token } from './token';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'layer-angular-sdk';
+  title = 'Layer Angular';
 }

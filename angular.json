@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/layer_checkout.js"
+            ]
           },
           "configurations": {
             "production": {
