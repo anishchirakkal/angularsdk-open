@@ -4,7 +4,7 @@ Layer.checkout({
     token: jsToken,
     accesskey: "efcaab50-983b-11eb-9420-c354255a3483",
     theme: {
-        logo : "https://open-logo.png",
+        // logo : "https://open-logo.png",
         color: "#3d9080",
         error_color : "#ff2b2b"
       }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectableObservable } from 'rxjs';
 import { PaymentService } from '../payment.service';
 import { Token } from '../token';
 
@@ -22,40 +23,55 @@ export class PaymentComponent implements OnInit {
   }
 
   pay(){
-    this.error="";
-    //console.log("Entered On Submit function!");
     
     this.paymentService.createToken(this.token).subscribe(response=>{
-      console.log(response);
-      if (response["status"] != undefined){ 
-        let status:string = response["status"];
 
-        if (response["status"] == "created") {
-          this.token = response["id"] ;
+      let body = response['responseBody'];
+      let code = response['statusCode'];
+      let responseBody = JSON.parse(body);
+
+
+      if (code == 200){ 
+        let status:string = responseBody.status;
+
+        if (status == "created") {
+          this.token = responseBody.id ;
           checkout(this.token);
         }
         else {
          
-          alert("Er:"+this.error);
-          //swalert( response["error"], this.error, "error");
+          
+          alert("Error :"+responseBody.status);
+          
         }
       }
       else {
+
+        if (code ==404){
+          alert("404 Not Found: Check API URL");
+        }
+        else if(code ==400){
+          alert("Status code: "+code+" Error:"+ responseBody.error)
+        }
+        else if(code ==422){
         var internalError = "";
-        let errorData:any = response["error_data"];
+        let errorData:any = responseBody.error_data;
         Object.keys(errorData).forEach(key => {
-          internalError = internalError + "["  + errorData[key] + "] "
-      });
-        this.error = internalError;
-        //this.error = response["error"] + " - " + response["error_data"] ;
+          internalError = internalError + "\n["  + errorData[key] + "] "
+        });
         
-        //swalert("Oops!", this.error, "error");
+        alert("Status Code: "+code+" \n Error(s):"+internalError);
+        
       }
-      alert("Error: "+this.error);
-    })
-    // if (this.error!=""){
-    // }
-    //checkout("sb_pt_INk91byD5qYj07");
-    console.log(this.error);
-  }
+      else {
+        alert("Status Code: "+code+" Error: "+responseBody.error);
+      }
+    }
+       
+     },
+     error=>{
+       alert(error.message);
+     })
+    
+    }
 }
