@@ -1,44 +1,53 @@
 <div class="col-md-6 offset-md-3" bg-dark text-white id="payform">
-
-    <h3 style="font-family: sans-serif;"><strong>Layer Angular Demo</strong></h3>
-    <form #login="ngForm" (ngSubmit)="pay()" >
+    <h3 style="font-family: sans-serif"><strong>Layer Angular Demo</strong></h3>
+    <form #login="ngForm" (ngSubmit)="pay()">
         <div class="form-group">
-            <label for="emailId">
-                Email ID:
-            </label>
-            <input #emailControl = "ngModel" type="email" class="form-control" required id="emailId" [(ngModel)]="token.email_id" name="emailId"  ngModel>
-            <div *ngIf="emailControl.touched && emailControl.invalid" class="alert alert-danger">Email is required</div>
-        </div>
-    
-        <div class="form-group">
-            <label for="mobileNumber">
-                Contact Number
-            </label>
-            <input #numberControl = "ngModel" type="text" class="form-control" required id="mobileNumber" [(ngModel)]="token.contact_number" name="mobileNumber" ngModel>
-            <div *ngIf="(numberControl.touched && numberControl.invalid)" class="alert alert-danger">Contact Number is required</div>
+            <label for="emailId"> Email ID: </label>
+            <input #emailControl="ngModel" type="email" class="form-control" required id="emailId"
+                [(ngModel)]="token.email_id" name="emailId" ngModel />
+            <div *ngIf="emailControl.touched && emailControl.invalid" class="alert alert-danger">
+                Email is required
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="amount">
-                Amount
-            </label>
-            <input #amountControl="ngModel"  type="number" class="form-control" required id="amount" [(ngModel)]="token.amount" name="amount" ngModel>
-            <div *ngIf="amountControl.touched && amountControl.invalid" class="alert alert-danger">Amount is required</div>
-            <div *ngIf="amountControl.touched && amountControl.value<=0" class="alert alert-danger">Amount should be greater than 0</div>
-            
+            <label for="mobileNumber"> Contact Number </label>
+            <input #numberControl="ngModel" type="text" class="form-control" required id="mobileNumber"
+                [(ngModel)]="token.contact_number" name="mobileNumber" ngModel />
+            <div *ngIf="numberControl.touched && numberControl.invalid" class="alert alert-danger">
+                Contact Number is required
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="mtx">
-               Currency
-            </label>
-            <input type="text" value ="INR" readonly class="form-control" id="currency" [(ngModel)]="token.currency" value="INR" name="currency" placeholder="INR">
+            <label for="amount"> Amount </label>
+            <input #amountControl="ngModel" type="number" class="form-control" required id="amount"
+                [(ngModel)]="token.amount" name="amount" ngModel />
+            <div *ngIf="amountControl.touched && amountControl.invalid" class="alert alert-danger">
+                Amount is required
+            </div>
+            <div *ngIf="amountControl.touched && amountControl.value <= 0" class="alert alert-danger">
+                Amount should be greater than 0
+            </div>
         </div>
-        <br>
+
+        <div class="form-group">
+            <label for="mtx"> Currency </label>
+            <input type="text" value="INR" readonly class="form-control" id="currency" [(ngModel)]="token.currency"
+                value="INR" name="currency" placeholder="INR" />
+        </div>
+        <br />
         <div>
-            <button  [disabled]="emailControl.invalid || amountControl.invalid || numberControl.invalid || numberControl.untouched || emailControl.untouched || amountControl.untouched" class="btn btn-success"  type="submit" id="pay">Pay</button>  
+            <button [disabled]="
+          emailControl.invalid ||
+          amountControl.invalid ||
+          numberControl.invalid ||
+          numberControl.untouched ||
+          emailControl.untouched ||
+          amountControl.untouched
+        " class="btn btn-success" type="submit" id="pay">
+                Pay
+            </button>
         </div>
-       
     </form>
-    
-    </div>
+</div>

@@ -6,16 +6,14 @@ import { Observable, throwError } from 'rxjs';
 import { Token } from './token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaymentService {
-  private baseURL = "http://localhost:8080/api/payment_token";
+  private baseURL = 'http://localhost:8080/api/payment_token';
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-
-  createToken(token:Token):Observable<any>{
-    return this.httpClient.post(`${this.baseURL}`,token);
+  createToken(token: Token): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}`, token);
   }
-
 }
